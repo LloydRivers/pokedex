@@ -20,3 +20,4 @@ jobs:
         working-directory: ${{ env.working-directory }}
       - name: Check linting
         run: npm run eslint
+        working-directory: ${{ env.working-directory }}
