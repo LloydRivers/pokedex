@@ -15,9 +15,19 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18.17"
+
       - name: Install dependencies
         run: npm install
         working-directory: ${{ env.working-directory }}
-      - name: Check linting
+
+      - name: Lint
         run: npm run lint
+        working-directory: ${{ env.working-directory }}
+
+      - name: Build
+        run: npm run build
+        working-directory: ${{ env.working-directory }}
+
+      - name: Test
+        run: npm run test
         working-directory: ${{ env.working-directory }}
