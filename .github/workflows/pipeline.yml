@@ -9,6 +9,9 @@ jobs:
   test:
     name: Unit Tests
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
     strategy:
       matrix:
         node-version: [18.x]
@@ -21,7 +24,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-          cache-dependency-path: ./package-lock.json
       - run: npm install
       - run: npm run build
       - run: npm run test
