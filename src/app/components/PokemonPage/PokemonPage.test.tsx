@@ -6,6 +6,10 @@ import data from "./data.json";
 import { Pokemon } from "@/types";
 
 describe("PokemonPage", () => {
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
+
   test("Checks component renders correctly", async () => {
     const spy = vi.spyOn(helpers, "fetchPokemon").mockImplementation(() => {
       return Promise.resolve(data as unknown as Pokemon);
