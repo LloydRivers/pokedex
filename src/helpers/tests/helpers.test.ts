@@ -1,5 +1,5 @@
-import * as helpers from "../../../helpers";
 import { Ability, Pokemon } from "@/types";
+import * as helpers from "..";
 
 describe("PokemonPage", () => {
   test("getNormalAbility returns the normal ability", () => {

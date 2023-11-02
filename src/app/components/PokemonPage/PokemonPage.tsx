@@ -1,6 +1,8 @@
-import Link from "next/link";
+"use client";
+import { MappedPokemon, Pokemon } from "@/types";
 import { PokemonAbility } from "@/app/components";
-import { MappedPokemon } from "@/types";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import {
   fetchPokemon,
   getTypes,
@@ -17,11 +19,21 @@ interface PokemonPageProps {
   name: string;
 }
 
-const PokemonPage = async ({ previous, next, name }: PokemonPageProps) => {
-  const pokemon = await fetchPokemon(name);
+const PokemonPage = ({ name, previous, next }: PokemonPageProps) => {
+  const [pokemon, setPokemon] = useState<Pokemon>();
+
+  useEffect(() => {
+    const setPokemonState = async (name: string) => {
+      const fetchedPokemon = await fetchPokemon(name);
+      setPokemon(fetchedPokemon);
+    };
+    setPokemonState(name);
+  }, []);
+
+  if (!pokemon) return <p>Loading...</p>;
+
   const types = getTypes(pokemon);
   const stats = getStats(pokemon);
-
   const normalAbility = getNormalAbility(pokemon);
   const hiddenAbility = getHiddenAbility(pokemon);
 
@@ -35,7 +47,9 @@ const PokemonPage = async ({ previous, next, name }: PokemonPageProps) => {
       <div className={`pokemon-page pokemon-type-${types?.type.name}`}>
         <div
           className="pokemon-image"
-          style={{ backgroundImage: `url(${pokemon?.sprites.front_default})` }}
+          style={{
+            backgroundImage: `url(${pokemon?.sprites.front_default})`,
+          }}
         />
         <div className="pokemon-info">
           <div className="pokemon-name">{pokemon?.name}</div>
