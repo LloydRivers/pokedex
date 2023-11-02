@@ -19,7 +19,6 @@ describe("PokemonPage", () => {
     const jsx = await PokemonPage(pokemonProps);
     render(jsx);
 
-    // data-testid="pokemon-name"
     const headingElement = screen.getByTestId("pokemon-name");
     expect(headingElement).toBeTruthy();
     expect(headingElement.textContent).toBe("ivysaur");
