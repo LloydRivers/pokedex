@@ -1,24 +1,27 @@
-import * as helpers from "../../../helpers";
-import { Ability, Pokemon } from "@/types";
+import { render, screen } from "@testing-library/react";
+import PokemonPage from "./PokemonPage";
 
 describe("PokemonPage", () => {
-  test("getNormalAbility returns the normal ability", () => {
-    const mockPokemon = {
-      abilities: [
-        {
-          ability: {
-            name: "overgrow",
-            url: "https://pokeapi.co/api/v2/ability/65/",
-          },
-          is_hidden: false,
-          slot: 1,
-        },
-      ],
-    } as Pokemon;
+  test("Checks component renders correctly", async () => {
+    const pokemonProps = {
+      previous: {
+        name: "bulbasaur",
+        url: "https://pokeapi.co/api/v2/pokemon/1/",
+        id: 1,
+      },
+      next: {
+        url: "https://pokeapi.co/api/v2/pokemon/3/",
+        name: "venusaur",
+        id: 3,
+      },
+      name: "ivysaur",
+    };
+    const jsx = await PokemonPage(pokemonProps);
+    render(jsx);
 
-    const ability = helpers.getNormalAbility(mockPokemon) as Ability;
-
-    expect(ability.ability.name).toBe("overgrow");
-    expect(ability.is_hidden).toBeFalsy();
+    // data-testid="pokemon-name"
+    const headingElement = screen.getByTestId("pokemon-name");
+    expect(headingElement).toBeTruthy();
+    expect(headingElement.textContent).toBe("ivysaur");
   });
 });
