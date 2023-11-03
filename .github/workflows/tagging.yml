@@ -1,0 +1,26 @@
+name: Tagging Workflow
+
+on:
+  workflow_run:
+    workflows: [Lint, Test, Deploy]
+    types:
+      - completed
+
+jobs:
+  tag_release:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Check Previous Workflow Conclusion
+        run: |
+          if [[ ${{ github.event.workflow_run.conclusion }} == 'success' ]]; then
+            echo "Previous workflow succeeded. Proceed with tagging."
+            # Add your tagging steps here
+            - name: Bump version and push tag
+              uses: anothrNick/github-tag-action@1.64.0
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                WITH_V: true
+                PRERELEASE: true
+          else
+            echo "Previous workflow didn't succeed. Skip tagging."
