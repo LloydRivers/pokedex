@@ -1,9 +1,11 @@
 name: CD
+
 on:
   workflow_call:
+  pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
+
 jobs:
   deploy:
     name: Deploy app
