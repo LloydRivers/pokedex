@@ -32,4 +32,4 @@
 - Update the CSS or styles to apply the selected font to text elements throughout the application.
 - Test the application to ensure the new font is applied consistently and enhances the overall design.
 
-Please assign these tickets to a new developer, and provide any additional guidance or resources they may need to complete the tasks effectively.
+Please assign these tickets to a new developer, and provide any additional guidance or resources they may need to complete the tasks effectively..
