@@ -1,33 +1,19 @@
-name: Bump version
+name: Tagging Workflow
 
 on:
-  workflow_call:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  ViTest:
-    uses: ./.github/workflows/test.yml
-  Lint:
-    uses: ./.github/workflows/lint.yml
-  CD:
-    uses: ./.github/workflows/CD.yml
-  build:
-    needs: [ViTest, Lint, CD]
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
+  tag_release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: "0"
-
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
+        uses: anothrNick/github-tag-action@1.64.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # if you don't want to set write permissions use a PAT token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: false
           DEFAULT_BUMP: patch
           RELEASE_BRANCHES: main
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
-          DRY_RUN: true
