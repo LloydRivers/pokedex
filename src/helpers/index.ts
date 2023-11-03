@@ -7,7 +7,6 @@ const mapPokemonList = ({ results }: PokemonListData): MappedPokemon[] => {
     id: parseInt(url?.match(/\/(\d+)\//)?.[1] || "0"),
   }));
 };
-
 export const fetchAndMapPokemonList = async (): Promise<MappedPokemon[]> => {
   const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=50");
   const data: PokemonListData = await response.json();
