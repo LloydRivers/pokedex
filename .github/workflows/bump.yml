@@ -30,7 +30,7 @@ jobs:
 
       - name: Bump version and push tag
         if: steps.check_skip.outcome != 'failure' # Only run if the previous step didn't find #skip
-        uses: anothrNick/github-tag-action@1.64.0
+        uses: anothrNick/github-tag-action@a2c70ae
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
