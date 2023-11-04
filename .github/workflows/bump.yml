@@ -29,7 +29,7 @@ jobs:
         shell: bash
 
       - name: Bump version and push tag
-        if: steps.check_skip.outcome != 'failure' # Only run if the previous step didn't find #skip
+        if: steps.check_skip.outcome != 'failure'
         uses: anothrNick/github-tag-action@a2c70ae
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
