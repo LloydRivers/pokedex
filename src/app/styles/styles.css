@@ -52,16 +52,22 @@ footer {
   flex-direction: column;
   height: 470px;
   padding: 16px;
-  width: 300px;
+  width: 90%;
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 .pokemon-image {
   min-height: 150px;
-  width: 100%;
+  /* width: 100%; */
+  width: 180px;
+  height: 180px;
   background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  align-self: center;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 
 .pokemon-name {
@@ -74,11 +80,7 @@ footer {
 
 .pokemon-info {
   background-color: rgba(255, 255, 255, 0.65);
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  height: 100%;
-  padding: 16px;
+  margin-top: 10px;
 }
 
 .pokemon-stats {

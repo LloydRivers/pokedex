@@ -37,7 +37,7 @@ const PokemonPage = async ({ previous, next, name }: PokemonPageProps) => {
           className="pokemon-image"
           style={{ backgroundImage: `url(${pokemon?.sprites.front_default})` }}
         />
-        <div className="pokemon-info">
+        <div className="flex flex-col flex-grow pokemon-info p-4">
           <h2 data-testid="pokemon-name" className="pokemon-name">
             {pokemon?.name}
           </h2>
