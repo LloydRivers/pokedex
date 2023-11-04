@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["raw.githubusercontent.com"],
+    remotePatterns: ["raw.githubusercontent.com"],
   },
   output: "standalone",
 };

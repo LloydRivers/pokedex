@@ -16,7 +16,8 @@ const PokemonList = ({ pokemonList }: { pokemonList: MappedPokemon[] }) => {
               <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
                 alt={name}
-                layout="fill"
+                width={100}
+                height={100}
                 objectFit="cover"
               />
             </div>
