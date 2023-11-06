@@ -10,7 +10,7 @@ const PokemonList = ({ pokemonList }: { pokemonList: MappedPokemon[] }) => {
           <Link
             key={id}
             href={`/pokemon/${name}`}
-            className="m-2 h-36 w-36 relative border border-[#3F477A] rounded-md shadow-md"
+            className="transition m-2 h-36 w-36 relative border border-[#3F477A] translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 rounded-md shadow-md"
           >
             <div className="bg-[#eee] bg-center bg-no-repeat">
               <Image
